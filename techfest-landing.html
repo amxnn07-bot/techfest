@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Techfest 2026 · An Aetherial Renaissance</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Space+Grotesk:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#f6f0e4;--ink:#1b1830;--mute:#5d5878;--gold:#9a6b12;--acc:#4b3fd6;--card:rgba(255,255,255,.65);--line:rgba(27,24,48,.16);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0918;--ink:#f1ead8;--mute:#a49fc2;--gold:#e5b95c;--acc:#8b7dff;--card:rgba(255,255,255,.05);--line:rgba(229,185,92,.22)}}
+:root[data-theme="dark"]{--bg:#0a0918;--ink:#f1ead8;--mute:#a49fc2;--gold:#e5b95c;--acc:#8b7dff;--card:rgba(255,255,255,.05);--line:rgba(229,185,92,.22)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main,nav,footer{position:relative;z-index:1}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 5vw;font-size:14px}
+nav b{font-family:'Cormorant Garamond',serif;font-size:26px;letter-spacing:.06em;color:var(--gold)}
+nav a{color:var(--ink);text-decoration:none;margin-left:22px;opacity:.8}
+nav a:hover{color:var(--gold)}
+.hero{min-height:88vh;display:grid;place-items:center;text-align:center;padding:4vh 5vw;position:relative}
+.rings{position:absolute;width:min(90vw,720px);aspect-ratio:1;opacity:.55;z-index:-1}
+.rings circle,.rings path,.rings line{fill:none;stroke:var(--gold);stroke-width:.6}
+.r1{animation:spin 90s linear infinite;transform-origin:50% 50%}
+.r2{animation:spin 140s linear infinite reverse;transform-origin:50% 50%}
+@keyframes spin{to{transform:rotate(360deg)}}
+.eyebrow{letter-spacing:.35em;font-size:12px;color:var(--gold);text-transform:uppercase}
+h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(46px,10vw,124px);line-height:.95;margin:18px 0}
+h1 em{font-style:italic;background:linear-gradient(90deg,var(--gold),var(--acc),var(--gold));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 6s linear infinite}
+@keyframes sheen{to{background-position:200% 0}}
+.sub{max-width:560px;margin:0 auto;color:var(--mute)}
+.count{display:flex;gap:14px;justify-content:center;margin:34px 0;flex-wrap:wrap}
+.count div{min-width:78px;padding:12px 8px;border:1px solid var(--line);border-radius:14px;background:var(--card);backdrop-filter:blur(6px)}
+.count b{display:block;font-family:'Cormorant Garamond',serif;font-size:38px;color:var(--gold);line-height:1}
+.count span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.btn{display:inline-block;padding:14px 30px;border-radius:99px;background:var(--gold);color:#120f24;font-weight:700;text-decoration:none;margin:6px;transition:transform .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px -8px var(--gold)}
+.btn.ghost{background:none;border:1px solid var(--gold);color:var(--gold)}
+section{padding:90px 5vw;max-width:1180px;margin:auto}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,58px);margin-bottom:10px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;text-align:center}
+.stats div{padding:26px 10px;border-top:1px solid var(--line)}
+.stats b{font-family:'Cormorant Garamond',serif;font-size:54px;color:var(--gold);display:block}
+.stats span{color:var(--mute);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:34px}
+.card{padding:28px;border:1px solid var(--line);border-radius:20px;background:var(--card);backdrop-filter:blur(6px);transition:transform .3s,border-color .3s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-6px);border-color:var(--gold)}
+.card:before{content:"";position:absolute;inset:0;background:radial-gradient(240px circle at var(--x,50%) var(--y,0%),rgba(229,185,92,.16),transparent 60%);opacity:0;transition:opacity .3s}
+.card:hover:before{opacity:1}
+.card i{font-style:normal;font-size:30px;display:block;margin-bottom:10px;color:var(--gold)}
+.card h3{font-family:'Cormorant Garamond',serif;font-size:28px}
+.card p{color:var(--mute);font-size:15px}
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:16px 0;position:relative;z-index:1;white-space:nowrap}
+.marquee div{display:inline-block;animation:mq 30s linear infinite;font-family:'Cormorant Garamond',serif;font-size:30px;font-style:italic;color:var(--gold)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.cta{text-align:center;padding:110px 5vw}
+footer{text-align:center;padding:30px;color:var(--mute);font-size:13px;border-top:1px solid var(--line)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}
+.rv.on{opacity:1;transform:none}
+@media (max-width:640px){nav a{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<nav><b>TECHFEST</b><div><a href="#pillars">Experience</a><a href="#about">About</a><a href="#join">Register</a></div></nav>
+<main>
+<header class="hero">
+  <svg class="rings" viewBox="0 0 400 400" aria-hidden="true">
+    <g class="r1"><circle cx="200" cy="200" r="190"/><circle cx="200" cy="200" r="170" stroke-dasharray="2 6"/><path d="M200 10V390M10 200H390M65 65L335 335M335 65L65 335"/></g>
+    <g class="r2"><circle cx="200" cy="200" r="130"/><rect x="110" y="110" width="180" height="180"/><rect x="110" y="110" width="180" height="180" transform="rotate(45 200 200)"/></g>
+  </svg>
+  <div>
+    <p class="eyebrow">30th Edition · IIT Bombay · 16–18 Dec 2026</p>
+    <h1>An <em>Aetherial</em><br>Renaissance</h1>
+    <p class="sub">Where heritage meets futuristic technology. Asia's largest science &amp; technology festival turns thirty.</p>
+    <div class="count" id="cd"><div><b>--</b><span>Days</span></div><div><b>--</b><span>Hours</span></div><div><b>--</b><span>Mins</span></div><div><b>--</b><span>Secs</span></div></div>
+    <a class="btn" href="https://techfest.org" id="join">Register at techfest.org</a><a class="btn ghost" href="#pillars">Explore</a>
+  </div>
+</header>
+<div class="marquee" aria-hidden="true"><div>Competitions ✦ Workshops ✦ Lectures ✦ Exhibitions ✦ Ideate ✦ TechConnect ✦ Space Symposium ✦ Competitions ✦ Workshops ✦ Lectures ✦ Exhibitions ✦ Ideate ✦ TechConnect ✦ Space Symposium ✦ </div></div>
+<section id="about" class="rv">
+  <p class="eyebrow">Since 1998</p><h2>Thirty years of making the future.</h2>
+  <p class="sub" style="margin:0 0 30px">Run entirely by IIT Bombay students, Techfest brings together innovators, tinkerers and dreamers for three days of tech.</p>
+  <div class="stats"><div><b data-n="175000">0</b><span>Attendees</span></div><div><b data-n="2500">0</b><span>Colleges reached</span></div><div><b data-n="800">0</b><span>Student organisers</span></div><div><b data-n="30">0</b><span>Editions</span></div></div>
+</section>
+<section id="pillars">
+  <div class="rv"><p class="eyebrow">The Experience</p><h2>Six ways to step in.</h2></div>
+  <div class="grid">
+    <div class="card rv"><i>⚔</i><h3>Competitions</h3><p>Robots battle, drones race, and minds clash in cut-throat contests.</p></div>
+    <div class="card rv"><i>✎</i><h3>Workshops</h3><p>Hands-on learning from industry experts, with an IIT Bombay certificate.</p></div>
+    <div class="card rv"><i>☉</i><h3>Lectures</h3><p>Conversations with leaders, scientists and astronauts.</p></div>
+    <div class="card rv"><i>⚙</i><h3>Exhibitions</h3><p>Working models, demos and prototypes from across the campus.</p></div>
+    <div class="card rv"><i>✧</i><h3>Ideate</h3><p>A launchpad where innovators pitch solutions for real-world problems.</p></div>
+    <div class="card rv"><i>☄</i><h3>Space &amp; TechConnect</h3><p>Symposia bridging research, industry and the final frontier.</p></div>
+  </div>
+</section>
+<section class="cta rv">
+  <h2>Be part of the Renaissance.</h2>
+  <p class="sub" style="margin-bottom:26px">Seats for workshops are open. Bring your curiosity.</p>
+  <a class="btn" href="https://techfest.org/workshops">Book a workshop</a>
+</section>
+</main>
+<footer>Techfest, IIT Bombay · Concept landing page · Content from public sources</footer>
+<script>
+// aether dust canvas
+const cv=document.getElementById('c'),x=cv.getContext('2d');let W,H,P=[],m={x:-999,y:-999};
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=Array.from({length:Math.min(90,W/14|0)},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3}))}
+addEventListener('resize',rs);addEventListener('pointermove',e=>{m.x=e.clientX;m.y=e.clientY});rs();
+function col(){return getComputedStyle(document.documentElement).getPropertyValue('--gold').trim()||'#e5b95c'}
+(function f(){x.clearRect(0,0,W,H);const g=col();x.fillStyle=g;x.strokeStyle=g;
+for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+const dx=p.x-m.x,dy=p.y-m.y,d=Math.hypot(dx,dy);if(d<140){p.x+=dx/d*1.2;p.y+=dy/d*1.2}
+x.globalAlpha=.6;x.beginPath();x.arc(p.x,p.y,1.4,0,7);x.fill()}
+for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const d=Math.hypot(P[i].x-P[j].x,P[i].y-P[j].y);if(d<110){x.globalAlpha=(1-d/110)*.25;x.beginPath();x.moveTo(P[i].x,P[i].y);x.lineTo(P[j].x,P[j].y);x.stroke()}}
+requestAnimationFrame(f)})();
+// countdown to 16 Dec 2026, IST
+const T=new Date('2026-12-16T09:00:00+05:30');const cb=document.querySelectorAll('#cd b');
+function tick(){let s=Math.max(0,(T-Date.now())/1000|0);const v=[s/86400|0,s%86400/3600|0,s%3600/60|0,s%60];cb.forEach((e,i)=>e.textContent=String(v[i]).padStart(2,'0'))}
+tick();setInterval(tick,1000);
+// reveal + counters + card glow
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('on');
+e.target.querySelectorAll('[data-n]').forEach(n=>{const t=+n.dataset.n;let s=null;(function a(ts){s=s||ts;const k=Math.min(1,(ts-s)/1600);n.textContent=Math.round(t*(1-Math.pow(1-k,3))).toLocaleString('en-IN')+(t>100&&k==1?'+':'');if(k<1)requestAnimationFrame(a)})(performance.now())});
+io.unobserve(e.target)}),{threshold:.2});
+document.querySelectorAll('.rv').forEach((e,i)=>{e.style.transitionDelay=(i%3)*.08+'s';io.observe(e)});
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--x',e.clientX-r.left+'px');c.style.setProperty('--y',e.clientY-r.top+'px')}));
+</script>
+</body>
+</html>
